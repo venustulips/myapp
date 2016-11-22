@@ -5,9 +5,9 @@
         .module('myappApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage' ];
+    AuthServerProvider.$inject = ['$http', '$localStorage' , 'JhiTrackerService'];
 
-    function AuthServerProvider ($http, $localStorage ) {
+    function AuthServerProvider ($http, $localStorage , JhiTrackerService) {
         var service = {
             getToken: getToken,
             hasValidToken: hasValidToken,
@@ -42,6 +42,7 @@
         }
 
         function logout () {
+            JhiTrackerService.disconnect();
 
             
             // logout from the server

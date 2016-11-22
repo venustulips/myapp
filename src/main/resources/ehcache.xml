@@ -37,5 +37,9 @@
            timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="com.mycompany.myapp.social.SocialUserConnection"
+           timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>

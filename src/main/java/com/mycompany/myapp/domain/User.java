@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 
+import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,6 +24,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "jhi_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Document(indexName = "user")
 public class User extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,8 +35,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @NotNull
     @Pattern(regexp = Constants.LOGIN_REGEX)
-    @Size(min = 1, max = 50)
-    @Column(length = 50, unique = true, nullable = false)
+    @Size(min = 1, max = 100)
+    @Column(length = 100, unique = true, nullable = false)
     private String login;
 
     @JsonIgnore

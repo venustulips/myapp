@@ -5,6 +5,7 @@ import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.repository.AuthorityRepository;
 import com.mycompany.myapp.repository.PersistentTokenRepository;
 import com.mycompany.myapp.repository.UserRepository;
+import com.mycompany.myapp.repository.search.UserSearchRepository;
 import com.mycompany.myapp.security.AuthoritiesConstants;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.util.RandomUtil;
@@ -31,10 +32,16 @@ public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Inject
+    private SocialService socialService;
+
+    @Inject
     private PasswordEncoder passwordEncoder;
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private UserSearchRepository userSearchRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -50,6 +57,7 @@ public class UserService {
                 user.setActivated(true);
                 user.setActivationKey(null);
                 userRepository.save(user);
+                userSearchRepository.save(user);
                 log.debug("Activated user: {}", user);
                 return user;
             });
@@ -104,6 +112,7 @@ public class UserService {
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+        userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
@@ -132,6 +141,7 @@ public class UserService {
         user.setResetDate(ZonedDateTime.now());
         user.setActivated(true);
         userRepository.save(user);
+        userSearchRepository.save(user);
         log.debug("Created Information for User: {}", user);
         return user;
     }
@@ -143,6 +153,7 @@ public class UserService {
             u.setEmail(email);
             u.setLangKey(langKey);
             userRepository.save(u);
+            userSearchRepository.save(u);
             log.debug("Changed Information for User: {}", u);
         });
     }
@@ -170,7 +181,9 @@ public class UserService {
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(u -> {
+            socialService.deleteUserSocialConnection(u.getLogin());
             userRepository.delete(u);
+            userSearchRepository.delete(u);
             log.debug("Deleted User: {}", u);
         });
     }
@@ -241,6 +254,7 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
+            userSearchRepository.delete(user);
         }
     }
 }

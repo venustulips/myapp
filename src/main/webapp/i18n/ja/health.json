@@ -13,6 +13,7 @@
         "indicator": {
             "diskSpace": "ディスクスペース",
             "mail": "メール",
+            "elasticsearch": "Elasticsearch",
             "db": "データベース"
         },
         "table": {

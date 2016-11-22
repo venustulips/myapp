@@ -32,6 +32,10 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    data:
+        elasticsearch:
+            cluster-name:
+            cluster-nodes: localhost:9300
     mail:
         host: localhost
         port: 25
@@ -64,7 +68,7 @@ jhipster:
     security:
         rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: c9eef632d3e471457e7df9efdf961da9a8dc488c
+            key: b5e4047990b033c7318d55ff2d85d84be0c613f0
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: myapp@localhost
         baseUrl: # keep empty to use the server's default URL
