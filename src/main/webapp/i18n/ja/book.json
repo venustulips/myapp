@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "book" : {
+            "home": {
+                "title": "Books",
+                "createLabel": "Book を追加",
+                "createOrEditLabel": "Bookを追加または編集",
+                "search": "Search for Book"
+            },
+            "created": "A new Book is created with identifier {{ param }}",
+            "updated": "A Book is updated with identifier {{ param }}",
+            "deleted": "A Book is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Book {{ id }}を削除してもよろしいですか？"
+            },
+            "detail": {
+                "title": "Book"
+            },
+            "title": "Title",
+            "price": "Price",
+            "author": "Author"
+        }
+    }
+}
