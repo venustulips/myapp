@@ -64,7 +64,6 @@ public class MyappApp {
         SpringApplication app = new SpringApplication(MyappApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
-        log.info("\n----------------------------------------------------------\n\t");
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
                 "Local: \t\thttp://localhost:{}\n\t" +
