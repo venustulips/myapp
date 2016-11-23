@@ -1,0 +1,24 @@
+{
+    "myappApp": {
+        "author" : {
+            "home": {
+                "title": "Authors",
+                "createLabel": "Author を追加",
+                "createOrEditLabel": "Authorを追加または編集",
+                "search": "Search for Author"
+            },
+            "created": "A new Author is created with identifier {{ param }}",
+            "updated": "A Author is updated with identifier {{ param }}",
+            "deleted": "A Author is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Author {{ id }}を削除してもよろしいですか？"
+            },
+            "detail": {
+                "title": "Author"
+            },
+            "name": "Name",
+            "phone": "Phone",
+            "book": "Book"
+        }
+    }
+}
